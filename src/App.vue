@@ -1,28 +1,69 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h2>Shape Generator</h2>
+    <p>Select a shape and enter dimensions</p>
+    <select v-model="shape" class="input">
+      <option value="circle">Circle</option>
+      <option value="square">Square</option>
+      <option value="rectangle">Rectangle</option>
+    </select>
+    <div v-if="shape === 'circle'">
+      <CircleShape />
+    </div>
+    <div v-if="shape === 'rectangle'">
+      <RectangleShape />
+    </div>
+    <div v-if="shape === 'square'">
+      <SquareShape />
+    </div>
+    <div class="grid">
+      <div v-for="(item, index) in shapes" :key="index">
+        <svg v-if="item.shape === 'circle'" :height="item.radii * 3" :width="item.radii * 3">
+          <circle :cx="item.radii * 1.2" :cy="item.radii * 1.2" :r="item.radii" :style="{ fill: item.color }" />
+        </svg>
+        <svg v-if="item.shape === 'square'" :height="item.length" :width="item.length">
+          <rect :width="item.length" :height="item.length" :style="{ fill: item.color }" />
+        </svg>
+        <svg v-if="item.shape === 'rectangle'" :height="item.breadth" :width="item.length">
+          <rect v-if="item.shape === 'rectangle'" :width="item.length" :height="item.breadth" :style="{ fill: item.color }" />
+        </svg>
+      </div>
+      <!-- <svg height="250" width="450">
+        <polygon points="225,10 50,150 350,210" style="fill:rgba(0,0,0,0);stroke:#609AAF;stroke-width:10" />
+      </svg> -->
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapGetters } from 'vuex'
+import RectangleShape from './components/RectangleShape.vue'
+import CircleShape from './components/CircleShape.vue'
+import SquareShape from './components/SquareShape.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CircleShape,
+    RectangleShape,
+    SquareShape
+  },
+  data () {
+    return {
+      shape: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['shapes'])
+  },
+  watch: {
+    shapes (val) {
+      this.shape = ''
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '@/assets/scss/main.scss';
 </style>
