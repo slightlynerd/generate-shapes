@@ -28,6 +28,7 @@ export default {
         return alert('Please enter length and breadth')
       }
       const payload = {
+        id: Date.now(),
         shape: 'rectangle',
         length: parseInt(this.length, 10),
         breadth: this.breadth,

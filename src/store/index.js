@@ -18,6 +18,9 @@ export default new Vuex.Store({
   mutations: {
     addShape (state, payload) {
       state.shapes.push(payload)
+    },
+    resetShapes (state) {
+      state.shapes = []
     }
   },
   plugins: [vuexLocal.plugin]

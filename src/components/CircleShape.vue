@@ -25,6 +25,7 @@ export default {
         return alert('Please enter radius')
       }
       const payload = {
+        id: Date.now(),
         shape: 'circle',
         radii: parseInt(this.radii, 10),
         color: this.color

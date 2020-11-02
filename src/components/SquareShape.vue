@@ -25,6 +25,7 @@ export default {
         return alert('Please enter length')
       }
       const payload = {
+        id: Date.now(),
         shape: 'square',
         length: parseInt(this.length, 10),
         color: this.color

@@ -1,8 +1,8 @@
 <template>
   <div>
     <section class="header">
-      <h2>SVG Shapes Generator</h2>
-      <p>Select a shape, color and dimensions to generate a shape</p>
+      <h2 class="text-white">SVG Shape Generator</h2>
+      <p class="text-white">Select a shape, color and dimensions to generate a shape</p>
     </section>
     <div class="shape-controls grid grid-col align-center items-center">
       <select v-model="shape" class="input">
@@ -21,21 +21,26 @@
         <SquareShape />
       </div>
     </div>
-    <div class="grid mt-8">
-      <div v-for="(item, index) in shapes" :key="index" class="mx-4">
-        <svg v-if="item.shape === 'circle'" :height="item.radii * 3" :width="item.radii * 3">
-          <circle :cx="item.radii * 1.2" :cy="item.radii * 1.2" :r="item.radii" :style="{ fill: item.color }" />
-        </svg>
-        <svg v-if="item.shape === 'square'" :height="item.length" :width="item.length">
-          <rect :width="item.length" :height="item.length" :style="{ fill: item.color }" />
-        </svg>
-        <svg v-if="item.shape === 'rectangle'" :height="item.breadth" :width="item.length">
-          <rect v-if="item.shape === 'rectangle'" :width="item.length" :height="item.breadth" :style="{ fill: item.color }" />
-        </svg>
-      </div>
+    <div class="mt-8">
+      <transition-group name="bounce" tag="div" class="grid">
+        <div v-for="item in shapes" :key="item.id" :item.sync="item" class="mx-4" style="animation-duration: 1.5s">
+          <svg v-if="item.shape === 'circle'" :height="item.radii * 3" :width="item.radii * 3">
+            <circle :cx="item.radii * 1.2" :cy="item.radii * 1.2" :r="item.radii" :style="{ fill: item.color }" />
+          </svg>
+          <svg v-if="item.shape === 'square'" :height="item.length" :width="item.length">
+            <rect :width="item.length" :height="item.length" :style="{ fill: item.color }" />
+          </svg>
+          <svg v-if="item.shape === 'rectangle'" :height="item.breadth" :width="item.length">
+            <rect v-if="item.shape === 'rectangle'" :width="item.length" :height="item.breadth" :style="{ fill: item.color }" />
+          </svg>
+        </div>
+      </transition-group>
       <!-- <svg height="250" width="450">
         <polygon points="225,10 50,150 350,210" style="fill:rgba(0,0,0,0);stroke:#609AAF;stroke-width:10" />
       </svg> -->
+      <div id="bottom" class="mt-4 mx-4">
+        <button v-if="shapes.length" @click="resetShapes" class="btn-main">Reset Shapes</button>
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +68,13 @@ export default {
   },
   watch: {
     shapes (val) {
+      this.$scrollTo('#bottom')
       this.shape = ''
+    }
+  },
+  methods: {
+    resetShapes () {
+      this.$store.commit('resetShapes')
     }
   }
 }
