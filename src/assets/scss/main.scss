@@ -1,16 +1,28 @@
 @import './core/button';
 @import './core/grid';
 @import './core/input';
-@import './core/margin';
+@import './core/spacing';
+@import './core/text';
 @import './core/variables';
 
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  color: #212121;
+  color: $text-color;
   background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path d="M1 2V0h1v1H0v1z" fill-opacity=".025"/></svg>');
-  background-size: 20px 20px;
+  background-size: 15px 15px;
   min-height: 100vh;
+}
+
+.header {
+  background-color: #c0ca33;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.shape-controls {
+  background-color: $white;
+  padding: 25px;
 }

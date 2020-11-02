@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="text-center">
     <input v-model="length" type="number" placeholder="Enter length" class="input mt-4">
-    <input v-model="breadth" type="number" placeholder="Enter breath" class="input mt-4">
-    <div class="grid mt-4">
-      Choose color:
+    <br>
+    <input v-model="breadth" type="number" placeholder="Enter breadth" class="input mt-4">
+    <div class="grid align-center mt-4">
+      <span class="mx-4">Choose color:</span>
       <input v-model="color" type="color" value="#000000">
     </div>
     <button @click="generateRect" class="btn-main mt-4">Generate shape</button>
@@ -23,6 +24,9 @@ export default {
   },
   methods: {
     generateRect () {
+      if (!this.breadth || !this.length) {
+        return alert('Please enter length and breadth')
+      }
       const payload = {
         shape: 'rectangle',
         length: parseInt(this.length, 10),

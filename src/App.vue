@@ -1,23 +1,28 @@
 <template>
   <div>
-    <h2>Shape Generator</h2>
-    <p>Select a shape and enter dimensions</p>
-    <select v-model="shape" class="input">
-      <option value="circle">Circle</option>
-      <option value="square">Square</option>
-      <option value="rectangle">Rectangle</option>
-    </select>
-    <div v-if="shape === 'circle'">
-      <CircleShape />
+    <section class="header">
+      <h2>SVG Shape Generator</h2>
+      <p>Select a shape, color and dimensions to generate a shape</p>
+    </section>
+    <div class="shape-controls grid grid-col align-center items-center">
+      <select v-model="shape" class="input">
+        <option value="" disabled>Select a shape</option>
+        <option value="circle">Circle</option>
+        <option value="square">Square</option>
+        <option value="rectangle">Rectangle</option>
+      </select>
+      <div v-if="shape === 'circle'">
+        <CircleShape />
+      </div>
+      <div v-if="shape === 'rectangle'">
+        <RectangleShape />
+      </div>
+      <div v-if="shape === 'square'">
+        <SquareShape />
+      </div>
     </div>
-    <div v-if="shape === 'rectangle'">
-      <RectangleShape />
-    </div>
-    <div v-if="shape === 'square'">
-      <SquareShape />
-    </div>
-    <div class="grid">
-      <div v-for="(item, index) in shapes" :key="index">
+    <div class="grid mt-8">
+      <div v-for="(item, index) in shapes" :key="index" class="mx-4">
         <svg v-if="item.shape === 'circle'" :height="item.radii * 3" :width="item.radii * 3">
           <circle :cx="item.radii * 1.2" :cy="item.radii * 1.2" :r="item.radii" :style="{ fill: item.color }" />
         </svg>

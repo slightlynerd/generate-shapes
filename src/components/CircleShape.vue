@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <input v-model="radii" type="number" placeholder="Enter radius" class="input mt-4">
-    <div class="grid mt-4">
-      Choose color:
+  <div class="text-center">
+    <input v-model="radii" type="number" placeholder="Enter radius" class="input mx-4 mt-4">
+    <div class="grid align-center mt-4 mx-4">
+      <span class="mx-4">Choose color:</span>
       <input v-model="color" type="color" value="#000000">
     </div>
     <button @click="generateCircle" class="btn-main mt-4">Generate shape</button>
@@ -21,6 +21,9 @@ export default {
   },
   methods: {
     generateCircle () {
+      if (!this.radii) {
+        return alert('Please enter radius')
+      }
       const payload = {
         shape: 'circle',
         radii: parseInt(this.radii, 10),
@@ -39,23 +42,5 @@ export default {
   width: 24px;
   height: 24px;
   margin: 0 5px;
-}
-.red {
-  background-color: #f44336;
-}
-.blue {
-  background-color: #2196f3;
-}
-.green {
-  background-color: #4caf50;
-}
-.yellow {
-  background-color: #ffeb3b;
-}
-.orange {
-  background-color: #ff9800;
-}
-.brown {
-  background-color: #795548;
 }
 </style>

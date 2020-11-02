@@ -2,3 +2,19 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.grid-col {
+  flex-direction: column;
+}
+
+.align-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
+}
