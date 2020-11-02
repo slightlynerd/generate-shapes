@@ -1,29 +1,26 @@
 # generate-shapes
 
 ## Project setup
-```
-yarn install
+
+```bash
+git clone https://github.com/slightlynerd/generate-shapes.git
 ```
 
-### Compiles and hot-reloads for development
+### start development server
+
+```bash
+docker-compose up --build
 ```
+
+### start development server (without docker)
+
+```bash
+yarn install
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
 ### Run your unit tests
-```
+
+```bash
 yarn test:unit
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
