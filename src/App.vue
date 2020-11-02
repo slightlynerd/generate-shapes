@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="header">
-      <h2>SVG Shape Generator</h2>
+      <h2>SVG Shapes Generator</h2>
       <p>Select a shape, color and dimensions to generate a shape</p>
     </section>
     <div class="shape-controls grid grid-col align-center items-center">

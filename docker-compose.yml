@@ -1,0 +1,12 @@
+version: '3'
+services:
+  shape_generator:
+    container_name: shape_generator
+    command: yarn serve
+    restart: always
+    build: .
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules/
