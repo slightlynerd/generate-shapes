@@ -35,9 +35,6 @@
           </svg>
         </div>
       </transition-group>
-      <!-- <svg height="250" width="450">
-        <polygon points="225,10 50,150 350,210" style="fill:rgba(0,0,0,0);stroke:#609AAF;stroke-width:10" />
-      </svg> -->
       <div id="bottom" class="mt-4 mx-4">
         <button v-if="shapes.length" @click="resetShapes" class="btn-main">Reset Shapes</button>
       </div>
